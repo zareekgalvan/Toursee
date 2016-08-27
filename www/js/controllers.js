@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ionic','ngCordova'])
 
-.controller('DashCtrl', function($scope, $http, $cordovaGeolocation) {
+.controller('IndexCtrl', function($scope, $http, $cordovaGeolocation) {
 
   var globalLat = null;
   var globalLong = null;
@@ -114,6 +114,10 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
+})
+
+.controller('PlacesCtrl', function($scope, $stateParams, Chats) {
+  console.log($stateParams)
 })
 
 .controller('AccountCtrl', function($scope) {

@@ -1,0 +1,15 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+
+  <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="place in places"" type="item-text-wrap" href="#/tab/places/{{place.id}}">
+        <img >
+        <h2>{{place.name}}</h2>
+        <p>{{place.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>
