@@ -4,20 +4,57 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 
   var globalLat = null;
   var globalLong = null;
-  
+  var places = {};
+
+  function getCategories(){
+    $http({
+        method: 'GET',
+        url: 'https://api.foursquare.com/v2/venues/categories?oauth_token=20Q4W0KKU02P3WAFGX4FJEVFBDDY3HBCOJ2KIHGOA0MB43TM&v=20160827'
+      })
+      .success(function(data, status, headers, config) {
+        console.log(data)        
+      })
+      .error(function(data, status, headers, config) {
+        alert("Error");
+      })
+
+  }
+
   function getPlaces(){
     if (globalLong != null && globalLat != null){
       $http({
-          method: 'GET',
-          url: "https://api.foursquare.com/v2/venues/search?ll="+globalLat+","+globalLong+"&client_id=ZH3UCNE24YVXYSAPJN2KIMAMHERNULWIE0ZP1MDKIZYZFKMO&client_secret=4VTHBQDRNBXNQ4KIAUCMW50UMCFLPYT13V5C3OIWESBY4FMF&v=20131017"
+        method: 'GET',
+        url: "https://api.foursquare.com/v2/venues/search?ll="+globalLat+","+globalLong+"&client_id=ZH3UCNE24YVXYSAPJN2KIMAMHERNULWIE0ZP1MDKIZYZFKMO&client_secret=4VTHBQDRNBXNQ4KIAUCMW50UMCFLPYT13V5C3OIWESBY4FMF&v=20131017&venuePhotos=1&&categoryId=4d4b7104d754a06370d81259"
+      })
+      .success(function(data, status, headers, config) {
+        var places = data.response.venues;
+        angular.forEach(places,function(place){
+          $scope.places = places;
+          //getPhotos(place.id);
         })
-        .success(function(data, status, headers, config) {
-          console.log(data);
-        })
-        .error(function(data, status, headers, config) {
-          alert("Error");
-        })
+        
+        console.log(places);
+      })
+      .error(function(data, status, headers, config) {
+        alert("Error");
+      })
     }
+  }
+
+  function getPhotos(venueID){
+    var photos = {}
+    $http({
+      method: 'GET',
+      url: 'https://api.foursquare.com/v2/venues/'+venueID+'/photos?oauth_token=20Q4W0KKU02P3WAFGX4FJEVFBDDY3HBCOJ2KIHGOA0MB43TM&v=20160827',
+    })
+    .success(function(data, status, headers, config) {
+      console.log(data)
+      photos = data;
+      return photos;
+    })
+    .error(function(data, status, headers, config) {
+      alert("Error");
+    })
     
   }
 
