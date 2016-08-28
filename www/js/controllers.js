@@ -65,6 +65,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 
     .then(function (position) {
       globalLat  = position.coords.latitude
+      console.log(globalLat)
       globalLong = position.coords.longitude
       getPlaces();
 
