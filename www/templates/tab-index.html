@@ -1,7 +1,26 @@
 <ion-view view-title="Dashboard">
-  <ion-content class="padding">
-
-  <ion-list>
+  <ion-content class="">
+    <div class="navbar navbar-default navbar-fixed-top text-center">
+      <ul class="ulbottom">
+        <li class="btn btn-default navbar-btn text-center">
+          Museums
+        </li>
+        <li class="btn btn-default navbar-btn text-center">
+          Natural
+        </li>
+        <li class="btn btn-default navbar-btn text-center">
+          Beaches
+        </li>
+        <li class="btn btn-default navbar-btn text-center">
+          Buildings
+        </li>
+        <li class="btn btn-default navbar-btn text-center">
+          Historic
+        </li>
+      </ul>
+    </div>
+    <div style="padding-top:100px;">
+      <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="place in places"" type="item-text-wrap" href="#/tab/places/{{place.id}}">
         <img >
         <h2>{{place.name}}</h2>
@@ -10,6 +29,8 @@
 
       </ion-item>
     </ion-list>
+    </div>
+  
 
   </ion-content>
 </ion-view>
